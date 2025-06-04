@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "exa-js": "^1.0.12",
-    "nanoid": "^5.1.5",
     "next": "15.1.8",
     "openai": "^4.52.0",
     "react": "^18",
