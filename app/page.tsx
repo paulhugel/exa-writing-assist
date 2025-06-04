@@ -5,6 +5,7 @@ import Dots from "@/utils/Dots";
 import { useCallback, useEffect, useRef, useState } from "react";
 import callExaSearcher from "../utils/exa";
 import callOpenAi from "../utils/openai";
+import Link from "next/link";
 
 export default function Home() {
   const [writingState, setWritingState] = useState("");
@@ -12,6 +13,7 @@ export default function Home() {
   const [timer, setTimer] = useState(null);
   const contentEditableRef = useRef(null);
   const [startGenerating, setStartGenerating] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   const generateText = useCallback(
     async (currentWritingState) => {
@@ -117,43 +119,83 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (contentEditableRef.current) {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (contentEditableRef.current && isMounted) {
       contentEditableRef.current.innerHTML = renderLinksInText(writingState);
     }
-  }, [writingState, renderLinksInText]);
+  }, [writingState, renderLinksInText, isMounted]);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-4">
-      <div className="w-full border-6 max-w-4xl p-6">
-        <p className="text-gray-400">DEMO</p>
-        <h1 className="md:text-6xl text-4xl pb-3 font-medium">
-          Get realtime{" "}
-          <span className="text-brand-default">writing and citation </span>
-          assistance
-        </h1>
+    <>
+      <main className="flex min-h-screen flex-col items-center justify-center p-4">
+        
+        <div className="w-full border-6 max-w-4xl p-6 mt-14">
+          <p className="text-gray-400">DEMO</p>
+          <h1 className="md:text-6xl text-4xl pb-3 font-medium">
+            Get realtime{" "}
+            <span className="text-brand-default">writing and citation </span>
+            assistance
+          </h1>
 
-        <p className="text-black mb-3">
-          Start writing your paragraph. The assistant will automatically
-          generate content and add citations 1 second after you stop typing.
-        </p>
+          <p className="text-black mb-3">
+            Start writing your paragraph. The assistant will automatically
+            generate content and add citations 1 second after you stop typing.
+          </p>
 
-        <div
-          ref={contentEditableRef}
-          id="input-text"
-          onInput={handleInput}
-          contentEditable={isGenerating ? false : true}
-          className="w-full bg-white p-2 border outline-none ring-2 ring-brand-default resize-none min-h-[200px] overflow-auto"
-        />
+          <div
+            ref={contentEditableRef}
+            id="input-text"
+            onInput={handleInput}
+            contentEditable={isGenerating ? false : true}
+            className="w-full bg-white p-2 border outline-none ring-2 ring-brand-default resize-none min-h-[200px] overflow-auto"
+          />
 
-        <div className="mt-2 flex justify-between align-middle">
-          <Exasvg />
-          <div className="text-brand-default">
-            <h1 className="text-2xl text-bold">
-              {isGenerating ? <Dots>Generating</Dots> : "Ready"}
-            </h1>
+          <div className="mt-2 flex justify-between align-middle">
+            <Link href="https://exa.ai" target="_blank">
+              <Exasvg />
+            </Link>
+            <div className="text-brand-default">
+              <h1 className="text-2xl text-bold">
+                {isGenerating ? <Dots>Generating</Dots> : "Ready"}
+              </h1>
+            </div>
           </div>
         </div>
-      </div>
-    </main>
+  
+
+      <footer className="w-full py-6 px-8 mb-6 mt-auto">
+        <div className="max-w-md mx-auto">
+          <p className="text-lg text-center text-gray-700">
+            <Link 
+              href="https://github.com/exa-labs/exa-writing-assist" 
+              target="_blank"
+              className="underline cursor-pointer hover:text-gray-800"
+            >
+              Project Code
+            </Link>
+            <span className="mx-3">|</span>
+            <Link 
+              href="https://exa.ai/demos" 
+              target="_blank"
+              className="underline cursor-pointer hover:text-gray-800"
+            >
+              See More Demo Apps
+            </Link>
+            <span className="mx-3">|</span>
+            <Link 
+              href="https://dashboard.exa.ai" 
+              target="_blank"
+              className="underline cursor-pointer hover:text-gray-800"
+            >
+              Try Exa API
+            </Link>
+          </p>
+        </div>
+      </footer>
+      </main>
+    </>
   );
 }
