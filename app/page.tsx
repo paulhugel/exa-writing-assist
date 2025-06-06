@@ -170,6 +170,14 @@ export default function Home() {
         <div className="max-w-md mx-auto">
           <p className="text-lg text-center text-gray-700">
             <Link 
+              href="https://dashboard.exa.ai" 
+              target="_blank"
+              className="underline cursor-pointer hover:text-gray-800"
+            >
+              Try Exa API
+            </Link>
+             <span className="mx-3">|</span>
+            <Link 
               href="https://github.com/exa-labs/exa-writing-assist" 
               target="_blank"
               className="underline cursor-pointer hover:text-gray-800"
@@ -186,11 +194,11 @@ export default function Home() {
             </Link>
             <span className="mx-3">|</span>
             <Link 
-              href="https://dashboard.exa.ai" 
+              href="https://docs.exa.ai/examples/demo-exa-powered-writing-assistant" 
               target="_blank"
               className="underline cursor-pointer hover:text-gray-800"
             >
-              Try Exa API
+              Tutorial
             </Link>
           </p>
         </div>
