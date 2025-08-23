@@ -1,5 +1,11 @@
 # Changelog
+## [Unreleased]
 
+- chore(config): Accepted Next.js auto-generated updates
+  - Reformatted `tsconfig.json` (`"lib"` array multi-line)
+  - Added `"target": "ES2017"` to support top-level `await`
+  - Updated `next-env.d.ts` (Next.js environment types)
+  
 ## [Unreleased]
 
 ## [2025-08-22]
