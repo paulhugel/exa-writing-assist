@@ -39,7 +39,7 @@ To set up the project, follow these steps:
 1. Clone the repository to your local machine.
 2. Open a terminal and navigate to the project directory.
 3. Run the command `npm install` to install the project dependencies.
-4. Configure any necessary API keys for Exa and Claude.
+4. Configure API Keys for Exa, Anthropic and OpenAI as shown in .env.example
 5. Run the command `npm run dev` to start the project locally.
 
 Now you're ready to use the writing and citation assistant!
