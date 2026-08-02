@@ -49,6 +49,7 @@ If deploying to vercel or similar, ensure to remove our bespoke domain setup in 
 ---
 
 For more information about Exa and Claude, please visit their respective websites:
+
 - [Exa](https://exa.ai)
 - [Anthropic (creators of Claude)](https://www.anthropic.com)
 
@@ -56,5 +57,6 @@ For more information about Exa and Claude, please visit their respective website
 ---
 
 For more information about Exa and Claude, please visit their respective websites:
+
 - [Exa](https://exa.ai)
 - [Anthropic (creators of Claude)](https://www.anthropic.com)
